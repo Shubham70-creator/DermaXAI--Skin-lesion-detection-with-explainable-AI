@@ -1,0 +1,529 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================
+   BODY & BACKGROUND
+   ========================= */
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #2c3e50;
+    padding: 30px 20px;
+
+    background-image:
+        linear-gradient(
+            rgba(245, 248, 252, 0.50),
+            rgba(245, 248, 252, 0.50)
+        ),
+        url('/static/background.png');
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+
+/* =========================
+   MAIN CONTAINER
+   ========================= */
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.12);
+
+    padding: 30px 35px;
+}
+
+
+/* =========================
+   HEADINGS
+   ========================= */
+
+h1 {
+    color: #1a3c6e;
+    border-bottom: 3px solid #4a90d9;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #1a3c6e;
+    margin-bottom: 8px;
+}
+
+h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+
+/* =========================
+   BADGES
+   ========================= */
+
+.badge-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.badge {
+    background: rgba(255, 255, 255, 0.90);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 12px;
+    color: #1a3c6e;
+    font-weight: 600;
+
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================
+   LOGO
+   ========================= */
+
+.logo-circle {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+
+    background: linear-gradient(
+        135deg,
+        #4a90d9,
+        #357abd
+    );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 10px;
+
+    font-size: 26px;
+}
+
+
+/* =========================
+   UPLOAD BOX
+   ========================= */
+
+.upload-box {
+    border: 2px dashed #4a90d9;
+    border-radius: 10px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    background: rgba(248, 251, 255, 0.82);
+
+    margin-top: 20px;
+
+    transition: 0.25s ease;
+}
+
+.upload-box:hover {
+    background: rgba(240, 247, 255, 0.95);
+}
+
+
+/* =========================
+   FILE INPUT
+   ========================= */
+
+input[type="file"] {
+    margin: 15px 0;
+}
+
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+button,
+.btn {
+    background-color: #4a90d9;
+    color: white;
+
+    border: none;
+
+    padding: 10px 24px;
+
+    border-radius: 6px;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s,
+        transform 0.2s;
+}
+
+button:hover,
+.btn:hover {
+    background-color: #357abd;
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   PREDICT BUTTON
+   ========================= */
+
+.btn-predict {
+    background: linear-gradient(
+        90deg,
+        #4a90d9,
+        #2d6fc9
+    );
+
+    width: 100%;
+
+    padding: 14px;
+
+    font-size: 16px;
+
+    border-radius: 8px;
+
+    border: none;
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.btn-predict:hover {
+    background: linear-gradient(
+        90deg,
+        #357abd,
+        #245faf
+    );
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   FEATURE GRID
+   ========================= */
+
+.feature-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+.feature-box {
+    background: rgba(244, 248, 252, 0.90);
+
+    border-radius: 8px;
+
+    padding: 14px 8px;
+
+    text-align: center;
+
+    transition: 0.2s ease;
+}
+
+.feature-box:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.feature-box .icon {
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.feature-box p {
+    font-size: 11px;
+    color: #555;
+    margin: 0;
+}
+
+
+/* =========================
+   RESULT PAGE
+   ========================= */
+
+.risk-badge {
+    display: inline-block;
+
+    padding: 4px 14px;
+
+    border-radius: 20px;
+
+    font-weight: bold;
+
+    font-size: 14px;
+}
+
+.risk-low {
+    background-color: #d4edda;
+    color: #1e7e34;
+}
+
+.risk-moderate {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.risk-high {
+    background-color: #f8d7da;
+    color: #c0392b;
+}
+
+
+/* =========================
+   RECOMMENDATION
+   ========================= */
+
+.recommendation-box {
+    background-color: rgba(240, 244, 248, 0.90);
+
+    border-left: 4px solid #4a90d9;
+
+    border-radius: 6px;
+
+    padding: 14px 18px;
+
+    margin: 15px 0;
+}
+
+
+/* =========================
+   CONFIDENCE BAR
+   ========================= */
+
+.confidence-bar-bg {
+    background-color: #e0e0e0;
+
+    width: 100%;
+
+    max-width: 320px;
+
+    height: 18px;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    margin-top: 6px;
+}
+
+.confidence-bar-fill {
+    height: 18px;
+}
+
+
+/* =========================
+   WARNING
+   ========================= */
+
+.warning-box {
+    background-color: #f8d7da;
+
+    color: #721c24;
+
+    border-left: 4px solid #dc3545;
+
+    border-radius: 6px;
+
+    padding: 12px 16px;
+
+    margin-top: 12px;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   IMAGE ROW
+   ========================= */
+
+.image-row {
+    display: flex;
+
+    gap: 30px;
+
+    flex-wrap: wrap;
+
+    margin-top: 20px;
+}
+
+.image-row img {
+    border-radius: 8px;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.10);
+}
+
+
+/* =========================
+   GRAD-CAM INFO
+   ========================= */
+
+.gradcam-info {
+    background:
+        linear-gradient(
+            135deg,
+            #f5f7fa 0%,
+            #e9eef5 100%
+        );
+
+    border-left: 4px solid #4a90d9;
+
+    border-radius: 6px;
+
+    padding: 12px 15px;
+
+    max-width: 300px;
+
+    margin-top: 10px;
+
+    font-size: 13px;
+
+    color: #444;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   TOP 3 PREDICTIONS
+   ========================= */
+
+.top3-list {
+    list-style: none;
+
+    margin-top: 10px;
+}
+
+.top3-list li {
+    background: #f8f9fa;
+
+    padding: 8px 14px;
+
+    margin-bottom: 6px;
+
+    border-radius: 6px;
+
+    border-left: 3px solid #4a90d9;
+}
+
+
+/* =========================
+   BACK LINK
+   ========================= */
+
+.back-link {
+    display: inline-block;
+
+    margin-top: 25px;
+
+    color: #4a90d9;
+
+    text-decoration: none;
+
+    font-weight: 600;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   HISTORY TABLE
+   ========================= */
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin-top: 15px;
+}
+
+th {
+    background-color: #4a90d9;
+
+    color: white;
+
+    padding: 10px;
+
+    text-align: left;
+}
+
+td {
+    padding: 10px;
+
+    border-bottom: 1px solid #e0e0e0;
+}
+
+tr:hover {
+    background-color: #f8fbff;
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN
+   ========================= */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 20px 12px;
+
+        background-attachment: scroll;
+    }
+
+    .container {
+        padding: 25px 20px;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .upload-box {
+        padding: 30px 15px;
+    }
+}
+.metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 18px 0 6px; }
+.metric-card { background: #f4f8fc; border-radius: 10px; padding: 16px 10px; text-align: center; border: 1px solid #e3ebf5; }
+.metric-value { font-size: 24px; font-weight: 700; color: #1a3c6e; }
+.metric-label { font-size: 12px; color: #667; margin-top: 4px; }
+.note { font-size: 13px; color: #667; margin: 6px 0 12px; }
+.note-list { font-size: 13px; color: #556; line-height: 1.7; padding-left: 20px; margin-bottom: 20px; }
+.table-wrap { overflow-x: auto; }
+.section-title { margin-top: 28px; }
+@media (max-width: 640px) { .metric-grid { grid-template-columns: repeat(2, 1fr); } }

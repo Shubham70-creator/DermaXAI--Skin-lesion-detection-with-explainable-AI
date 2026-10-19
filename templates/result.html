@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <title>DermaXAI — Result</title>
+
+        <h2>{{ full_name }}</h2>
+        <span class="risk-badge {% if 'High' in risk %}risk-high{% elif 'Moderate' in risk %}risk-moderate{% else %}risk-low{% endif %}">
+            {{ risk }}
+        </span>
+
+        <p style="margin-top: 15px;"><strong>What is this?</strong><br>{{ description }}</p>
+
+        <div class="recommendation-box">
+            <strong>Recommended Action:</strong><br>{{ recommendation }}
+        </div>
+
+        <p><strong>Confidence:</strong> {{ confidence }}%</p>
+        <div class="confidence-bar-bg">
+            <div class="confidence-bar-fill" style="background-color: {% if confidence > 80 %}#28a745{% elif confidence > 60 %}#ffc107{% else %}#dc3545{% endif %}; width: {{ confidence }}%;"></div>
+        </div>
+
+        {% if low_confidence %}
+        <div class="warning-box">⚠ Low confidence prediction — please consult a dermatologist for confirmation.</div>
+        {% endif %}
+
+        <h3 style="margin-top: 25px;">Top 3 Possibilities</h3>
+        <ul class="top3-list">
+        {% for item in top3 %}
+            <li>{{ item.full_name }} ({{ item.class_code }}) — {{ item.probability }}%</li>
+        {% endfor %}
+        </ul>
+
+        <div class="image-row">
+            <div>
+                <h3>Original Image</h3>
+                <img src="/{{ original_image }}" width="300">
+            </div>
+            <div>
+                <h3>Grad-CAM Explanation</h3>
+                <img src="/{{ heatmap_image }}" width="300">
+                <div class="gradcam-info">
+                    <span style="font-size: 15px;">🔍</span> <strong>Grad-CAM++ Visualization</strong><br>
+                    Highlights the regions that most influenced the model's decision — offering insight into its reasoning.
+                </div>
+            </div>
+        </div>
+
+        <a href="/" class="back-link">← Try another image</a> &nbsp;|&nbsp;
+        <a href="/history" class="back-link">View Prediction History</a>
+    </div>
+</body>
+</html>

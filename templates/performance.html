@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DermaXAI — Model Performance</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+{% macro show_table(rows) %}
+    {% if rows %}
+    <div class="table-wrap">
+    <table>
+        <tr>{% for h in rows[0] %}<th>{{ h }}</th>{% endfor %}</tr>
+        {% for row in rows[1:] %}
+        <tr>{% for cell in row %}<td>{{ cell }}</td>{% endfor %}</tr>
+        {% endfor %}
+    </table>
+    </div>
+    {% else %}
+    <p class="note">Table file not found in static/performance/.</p>
+    {% endif %}
+{% endmacro %}
+    <div class="container">
+        <h1>Model Performance</h1>
+        <p class="note">Results of our own experiments (not numbers from the literature).</p>
+
+        {% if summary %}
+        <div class="metric-grid">
+            <div class="metric-card"><div class="metric-value">{{ "%.1f"|format(summary.accuracy * 100) }}%</div><div class="metric-label">Test accuracy</div></div>
+            <div class="metric-card"><div class="metric-value">{{ "%.3f"|format(summary.macro_f1) }}</div><div class="metric-label">Macro F1</div></div>
+            <div class="metric-card"><div class="metric-value">{{ "%.3f"|format(summary.macro_auc) }}</div><div class="metric-label">Macro AUC</div></div>
+            <div class="metric-card"><div class="metric-value">{{ "%.1f"|format(summary.mel_recall * 100) }}%</div><div class="metric-label">Melanoma recall</div></div>
+        </div>
+        <p class="note">DenseNet169, HAM10000 held-out test split (n = 1,503).</p>
+        {% endif %}
+
+        <h2 class="section-title">Backbone comparison</h2>
+        {{ show_table(model_table) }}
+
+        <h2 class="section-title">Confusion matrices</h2>
+        <div class="image-row">
+            <div><h3>DenseNet169</h3><img src="/static/performance/confusion_matrix_densenet169.png" width="420"></div>
+            <div><h3>ResNet50</h3><img src="/static/performance/confusion_matrix_resnet50.png" width="420"></div>
+        </div>
+
+        <h2 class="section-title">Explanation quality (IoU with lesion masks)</h2>
+        {{ show_table(xai_table) }}
+        <div class="image-row">
+            <div><h3>Qualitative examples</h3><img src="/static/performance/fig_xai_qualitative.png" width="520"></div>
+            <div><h3>Threshold sensitivity</h3><img src="/static/performance/fig_threshold_sweep.png" width="320"></div>
+        </div>
+
+        <h2 class="section-title">Effect of continued training with regularization</h2>
+        {{ show_table(ablation_table) }}
+
+        <h2 class="section-title">How to read these results</h2>
+        <ul class="note-list">
+            <li>Classification metrics: one training run per model on one data split, so there is no estimate of seed-to-seed variation.</li>
+            <li>Explanation quality: 100 ISIC 2018 images; IoU between the thresholded heatmap (0.5) and the lesion mask.</li>
+            <li>A model-free centre-blob baseline reaches IoU 0.438 (and up to 0.473 when tuned on the same images), so IoU should be read relative to that baseline.</li>
+            <li>The final model had 6 more epochs than the baseline, so the comparison above does not isolate regularization alone.</li>
+            <li>Research prototype. Not a medical diagnosis.</li>
+        </ul>
+
+        <a href="/" class="back-link">&larr; Back to upload</a> &nbsp;|&nbsp;
+        <a href="/history" class="back-link">Prediction History</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,3 @@
+Model,Params (M),Test Acc,Macro F1,Macro AUC,Mel recall,Mean IoU (Grad-CAM++),IoU 95% CI,Epoch time (s),Inference (ms/img)
+DenseNet169,12.5,0.845,0.8049,0.9722,0.7605,0.5238,"[0.486, 0.562]",185.0,6.36
+ResNet50,23.5,0.8237,0.7529,0.962,0.5629,0.4468,"[0.416, 0.478]",165.5,4.06
